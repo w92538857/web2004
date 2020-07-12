@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //想定义一组付款函数，支持三种付款方式: 手机支付, 现金支付，刷卡支付
+    //手机支付: 不需要给收款员什么东西，而是自己扫二维码
+    //现金支付: 需要给收款员一笔现金
+    //刷卡支付: 需要给收款员银行卡和密码两个数据
+    //都是  "支付"
+    function pay(                     ){
+    // arguments{                     }.length=2
+    //              0            1 
+      //如果没有传入实参就手机支付
+      if(arguments.length==0){
+        console.log(`手机支付...`)
+      }else if(arguments.length==1){
+        //否则如果传入了1个实参就现金支付
+        console.log(`现金支付...收您${arguments[0]}元`)
+      }else{//否则（暂时只考虑三种情况）
+        console.log(`刷卡支付...从您卡号${arguments[0]}扣款成功！`)
+      }
+    }
+    //调用时: 
+    //其它: 
+    pay(); //0个实参
+    pay(100); //1个实参
+    pay("6553 1234","123456"); //2个实参
+  </script>
+</body>
+</html>

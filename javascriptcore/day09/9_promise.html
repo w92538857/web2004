@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //. 示例: 使用回调函数实现多个异步任务必须顺序执行: 
+    //. 定义前一个任务函数时，将原异步任务的代码，用new Promise(function(door){...})包裹，并返回到函数外部
+	//function 前一项任务(){ //不要写回调函数的形参变量了！
+    //达内举办运动会，亮亮，然然，东东参加百米赛跑项目
+    function liang(){
+      //在函数内造了一个带门的格子间！
+      //应该返回到外部，才能让外部知道这里是一个格子间
+      return new Promise(
+              // 赠门
+        function(door){
+          console.log(`亮起跑...`);
+          //原异步任务代码
+          setTimeout(function(){//异步
+          //原异步任务最后一句话执行完:
+            console.log(`亮到达终点！`);
+            //在亮到达终点之后，开门
+            door();//->自动执行.then(下一项任务)
+          },6000)
+        }
+      )
+    }
+    function ran(){
+      return new Promise(
+        function(door){
+          console.log(`然起跑...`);
+          setTimeout(function(){//异步
+            console.log(`然到达终点！`)
+            //在然到达终点之后，开门
+            door(); //->自动执行.then(下一项任务)
+          },4000)
+        }
+      )
+    }
+    function dong(){
+      console.log(`东起跑...`);
+      setTimeout(function(){//异步
+        console.log(`东到达终点！`)
+      },2000)
+    }
+
+    //如何将格子间和下一项任务链接起来！
+    // liang()
+    // //return new Promise()格子间
+    // .then(ran) //会在格子间中调用door()开门后，才自动开始执行！
+    // //只要自动执行然，又自动返回new Promise()格子间
+    // .then(dong)
+    // 只要后一项任务也返回new Promise()对象，则可以继续.then: 
+    liang().then(ran).then(dong);//串联
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+
+    var pool={
+      ip:"127.0.0.1",
+      port:3306,
+      db:"xz"
+    };
+
+    //希望pool中的所有属性值禁止修改
+    Object.freeze(pool);
+    //试图修改pool的ip属性值
+    pool.ip="192.168.0.100";//报错: Cannot assign to read only property 'ip'
+  </script>
+</body>
+</html>

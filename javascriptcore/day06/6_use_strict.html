@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //"use strict";
+    //复习第一阶段斐波那契数列：
+    //小程序->在线->JSCORE->day05  3. 严格模式...结尾 斐波那契
+    //1 1 2 3 5 8 13 21 34 55
+    //1 2 3 4 5 6 7  8  9  10
+    //第一个数是1
+    
+    //第二个数也是1
+    //从第三个数开始，每个数都是它相邻的前两个数的和
+    //用程序: 
+    function f(n){//求斐波那契数列中第n个数是几
+      if(n<3){//前两个数
+        return 1;//直接返回1
+      }else{//只有每个数，都等于相邻的前两个数的和
+        //return fib(n-1)           +  fib(n-2)
+        //        ↑                     ↑
+        return arguments.callee(n-1)+arguments.callee(n-2);
+      }
+    }
+    //想获得数列中第10个数
+    console.log(f(10)); //55
+  </script>
+</body>
+</html>

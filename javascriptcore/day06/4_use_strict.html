@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+
+
+    var eric={
+      eid:1001, 
+      ename:"埃里克"
+    };
+    //要求员工的编号不能修改！
+    //设置eric对象的eid属性为只读
+    Object.defineProperty(eric,"eid",{
+      writable:false
+    });//先不要问，稍后重点讲
+
+    //试图修改eric的eid属性
+    eric.eid=-2; //报错：
+    //Cannot assign to read only property 'eid'
+    // 不能    赋值  给    只读      属性    eid
+    console.log(eric);
+  </script>
+</body>
+</html>

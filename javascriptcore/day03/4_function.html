@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function cook(菜,蛋,面){
+      console.log(`炒${蛋}`)
+      console.log(`炒${菜}`)
+      console.log(`${菜}和${蛋}一起炒`)
+      console.log(`煮${面}`)
+      return `香喷喷的${菜}${蛋}${面}`
+    }
+    //周一
+    var 碗=cook("西红柿","鸡蛋","面");
+    console.log(碗);
+    //周二: 西红柿没了，只有黄瓜；鸡蛋没了，只有辣条；面没了，只有粉丝
+    var 碗=cook("黄瓜","辣条","粉丝");
+    console.log(碗);
+  </script>
+</body>
+</html>

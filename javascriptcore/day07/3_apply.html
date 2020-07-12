@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //有一个公共的计算薪资的函数
+    //              底薪  奖金1  奖金2
+    function jisuan(base,bonus1,bonus2){
+      console.log(`${this.ename} 的总工资是: ${base+bonus1+bonus2}`)
+    }
+
+    //有两个员工: 
+    var lilei={ ename:"Li Lei" };
+    var hmm={ ename:"Han Meimei" };
+
+    //李磊的三个薪资是放在一个数组中给的
+    var arr=[10000,1000,2000];
+    //错误做法: 
+    //jisuan.call(lilei,arr/*,undefined,undefined*/)
+    //             |     ↓      ↓           ↓
+//function jisuan( ↓    base,  bonus1,   bonus2)
+    //           this.ename   
+    //         [10000,1000,2000]+undefined+undefined
+    //自动将数组转为字符串，拼接字符串——不是我们想要的！
+    //正确做法: 先打散数组为多个值，再传参
+    jisuan.apply(lilei,          arr               )
+//                 |           打散数组
+//                 |    10000，  1000，  2000
+//                 |      ↓       ↓        ↓
+//function jisuan( ↓    base,  bonus1,   bonus2)
+    //           this.ename  
+  </script>
+</body>
+</html>

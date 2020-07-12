@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //问题: 如果在没有构造函数的情况下，也想创建一个子对象，继承父对象
+    var father={
+      bal:100000000000,
+      car:"infiniti"
+    };
+    //创建一个新对象lilei，并让李磊自动继承father对象
+    var lilei=Object.create(father,{
+      //为李磊添加自有属性sname和sage
+      sname:{
+        value:"Li Lei",
+        writable:true,
+        enumerable:true
+      },
+      sage:{
+        value:11,
+        writable:true,
+        enumerable:true
+      }
+    });
+    //密封李磊对象
+    Object.seal(lilei);
+    console.log(lilei);
+  </script>
+</body>
+</html>

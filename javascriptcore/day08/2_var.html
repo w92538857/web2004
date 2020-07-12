@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var t=0;//定义全局变量t，用于累加每个函数的执行时间
+    function fun1(){
+      console.log(`fun1执行耗时0.3s`);
+      t+=0.3;
+    }
+    function fun2(){
+      t=0;
+    //var t;// 因为fun2中已经有了局部变量t
+      console.log(`fun2执行耗时0.8s`);
+      t+=0.8; //所以0.8不会加到全局变量！而是加给局部变量t。所以，最后全局变量t少了0.8s
+      //将来可能会追加一段新的代码
+      if(false){//不会执行！但是if的{不是作用域,防不住内部的var变量被声明提前！
+        var t=new Date();
+        console.log(`新代码在${t.toLocaleString()}被执行`)
+      }
+      console.log(`${t}`);
+    }
+    fun1();
+    fun2();
+    console.log(`共耗时${t}s`);//1.1s
+  </script>
+</body>
+</html>

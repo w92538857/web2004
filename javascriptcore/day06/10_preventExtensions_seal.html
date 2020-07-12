@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+
+    var eric={
+      eid:1001,
+      ename:"埃里克"
+    }
+    Object.defineProperty(eric,"eid",{
+      writable:false
+    });
+    //防扩展: 
+    //Object.preventExtensions(eric);
+    //        阻止    扩展
+    //密封: 
+    Object.seal(eric);
+
+    //尝试修改eric的eid
+    //eric.eid=-2;
+    //试图为eric添加新属性
+    //eric.Eid=-2;//报错:
+    //Cannot add property Eid, object is not extensible
+    // 不能  添加  属性    Eid(因为)对象是 不   可以扩展的
+    //尝试删除ename
+    //delete eric.ename;//报错: 
+    //Cannot delete property 'ename'
+    console.log(eric);
+  </script>
+</body>
+</html>

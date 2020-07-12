@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //达内举办运动会，亮亮，然然，东东参加百米赛跑项目
+    function liang(che){
+      console.log(`亮起跑...`);
+      setTimeout(function(){//异步
+        console.log(`亮到达终点！`);
+        //在亮到达终点之后，卸车
+        che();
+        //相当于function(){ ran() }(); 于是然才开始执行
+      },6000)
+    }
+    function ran(che){
+      console.log(`然起跑...`);
+      setTimeout(function(){//异步
+        console.log(`然到达终点！`)
+        //在然到达终点之后，卸车
+        che();
+        //相当于function(){ dong() }() //东才开始执行
+      },4000)
+    }
+    function dong(){
+      console.log(`东起跑...`);
+      setTimeout(function(){//异步
+        console.log(`东到达终点！`)
+      },2000)
+    }
+
+    //希望三个人接力跑！一个跑完，下一个才能起跑
+    //错误的解决: 仅顺序调用
+    //因为异步函数，在主程序之外独立执行，谁也不等谁！
+    // liang();
+    // ran();
+    // dong();
+    //不好的但是正确的解决方法: 
+    liang(
+      //亮的che=
+      function(){
+        ran(
+          //然的车=
+          function(){
+            dong()
+          }
+        );
+      }
+    );
+  </script>
+</body>
+</html>

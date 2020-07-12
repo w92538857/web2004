@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //假设从服务器端用ajax请求过来一个敏感词数组
+    //要求: 将来数组里有什么词，我们的程序就要防住什么词！
+    var arr=["青天","紫烟"];
+    //问题: 我们不可能提前预知从服务器返回的数组中包含哪些词！
+    //解决: 将arr数组中每个关键词用|相连拼接成一个字符串
+    console.log(arr);
+    console.log(arr.join("|"));
+    //          青天|明月|紫烟
+
+
+
+    //我们的前端js程序
+    //请用户输入一条消息内容
+    var msg=prompt("请输入消息内容");
+    //先定义正则表达式对象
+    //问题: 自然也就不可能提前在前端程序里写死正则！
+    //错误的解决: 将动态生成正则表达式的js语句，直接放入//中
+    //原因: //中是正则表达式的地盘！//中不认识js语句！
+    //var reg=/arr.join("|")/;
+    //正确的解决: 被迫使用new RegExp("正则","ig")
+    //原因: new RegExp()的参数刚好需要一个字符串！而我们有无数种方法可以拼出我们想要的任意字符串！
+    var reg=new RegExp(arr.join("|"));
+    //                       ||
+    //      new RegExp("青天|明月|紫烟");
+    //       ||
+    //var reg=/青天|明月|紫烟/;
+    console.log(reg);
+    //用正则表达式对象查找消息内容中是否包含敏感词
+    var i=msg.search(reg);
+    //如果包含敏感词
+    if(i!=-1){
+      //就提示红字: 包含敏感词禁止发送
+      document.write(`<h1 style="color:red">包含敏感词，禁止发送</h1>`)
+    }else{//否则
+      //就显示: 然哥说: 消息内容
+      document.write(`<h1 style="color:green">然哥说:${msg}</h1>`)
+    }
+  </script>
+</body>
+</html>

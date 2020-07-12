@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var t=0;//定义全局变量t，用于累加每个函数的执行时间
+    function fun1(){
+      console.log(`fun1执行耗时0.3s`);
+      t+=0.3;
+    }
+    function fun2(){
+      console.log(`fun2执行耗时0.8s`);
+      t+=0.8;
+
+      console.log(a);//undefined,说明被提前了，且超出if范围了！
+      //console.log(b);//报错！
+      //将来可能会追加一段新的代码
+      if(true){//会执行！但是if的{不是作用域,防不住内部的var变量被声明提前！
+        //let b=100;
+        //(function(){//只使用匿名函数自调也能实现！
+          let t=new Date();
+          console.log(`新代码在${t.toLocaleString()}被执行`);
+        //   var _t=new Date();
+        //   console.log(`新代码在${_t.toLocaleString()}被执行`)
+        // })();
+        var a=100;
+      }
+
+      console.log(a);
+    }
+    fun1();
+    fun2();
+    console.log(`共耗时${t}s`);//1.1s
+  </script>
+</body>
+</html>

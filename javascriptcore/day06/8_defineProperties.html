@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+
+
+    var eric={
+      eid:1001,
+      ename:"埃里克",
+      salary:12000
+    }
+    //系统要求: eid只读, ename禁止删除, salary禁止遍历
+    Object.defineProperties(eric,{
+      eid:{
+        writable:false,
+        configurable:false
+      },
+      ename:{
+        configurable:false
+      },
+      salary:{
+        enumerable:false,
+        configurable:false
+      }
+    })
+    
+
+    //试图重新打开被关闭的writable开关！
+    // Object.defineProperty(eric,"eid",{
+    //   writable:true,
+    //   configurable:true //不可逆
+    // });//报错: Cannot redefine property: eid
+    // //         不能   重新定义   属性      eid
+    //试图修改eid
+    //eric.eid=-2; //报错: Cannot assign to read only property 'eid'
+
+    //试图删除ename
+    //delete eric.ename; //报错: Cannot delete property 'ename'
+    //试图遍历eric所有属性(包括salary)
+    for(var key in eric){
+      console.log(`属性名: ${key}, 属性值:${eric[key]}`)
+    }
+    console.log(eric);
+    //用.强行访问salary
+    console.log(`eric.salary=${eric.salary}`)
+  </script>
+</body>
+</html>

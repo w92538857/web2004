@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //有一个公共的计算薪资的函数
+    //              底薪  奖金1  奖金2
+    function jisuan(base,bonus1,bonus2){
+      console.log(`${this.ename} 的总工资是: ${base+bonus1+bonus2}`)
+    }
+
+    //有两个员工: 
+    var lilei={ ename:"Li Lei" };
+    var hmm={ ename:"Han Meimei" };
+    //李磊觉得总是跟别人共用一个，总是借用很不方便！
+    //且李磊的底薪每个月都是固定的！不想每次都输入10000
+    // jisuan.call(lilei,10000,1000,2000);
+    // jisuan.call(lilei,10000,2000,2000);
+    // jisuan.call(lilei,10000,1000,1500);
+    //于是lilei决定买一个新的一模一样的，自己专属的计算器
+    var jisuan2=jisuan.bind(lilei,10000);
+//                            |    ↓永久
+//         jisuan2:function(  |   base,...){
+                            //↓   base=10000
+                           //this->lilei
+  // console.log(`${lilei.ename} 的总工资是: ${base+bonus1+bonus2}`)
+//}  
+    //从此李磊使用计算2时，再不用call了！再不用借了！
+    //且每个月计算薪资时不用重复输入底薪了
+    jisuan2(1000,2000);
+    jisuan2(2000,2000);
+    jisuan2(2000,1500);  
+    //结论: 每次调用时即使不传入lilei，也能输出lilei说明是永久的替换this！即使不传入实参值10000，也能将10000累加到总工资，说明base也永久绑定为10000了！
+  </script>
+</body>
+</html>

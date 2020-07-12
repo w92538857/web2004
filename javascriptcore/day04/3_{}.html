@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //创建一个学生对象lilei，保存李磊的: 
+    //姓名: Li Lei
+    //年龄: 11
+    //保存李磊会做的一件事: 
+    //自我介绍:
+    var lilei={//不是作用域
+    //js中只有两种作用域: 全局作用域，函数作用域
+    //对象中的内容既不是全局，也不是函数作用域
+    //对象仅仅是一种结构复杂的特殊存储结构而已！
+      sname:"Li Lei",
+      sage:11,
+      intrSelf:function(){
+        console.log(`I'm ${this.sname}, I'm ${this.sage}`)
+      }//作用域链: ？个格子？
+    }
+    
+    console.log(lilei);
+    //输出李磊的年龄
+    console.log(`李磊今年:${lilei.sage}`);
+    //请李磊做自我介绍: 
+    lilei.intrSelf();//this.sname    this.sage
+    //                  ↓             ↓
+    //                lilei.sname    lilei.sage
+    //过了一年，李磊长了一岁
+    lilei.sage++;
+    //再输出李磊的年龄
+    console.log(`李磊今年:${lilei.sage}`);
+    //再请李磊做自我介绍: 
+    lilei.intrSelf();//this.sname    this.sage
+    //                  ↓             ↓
+    //                lilei.sname    lilei.sage
+
+    var intrSelf=lilei.intrSelf;
+    intrSelf();// I'm undefined  I'm undefined
+//其实执行的是window.intrSelf()，intrSelf()中的this指window，因为window中没有sname和sage，所以window.sname和window.sage返回undefined
+  </script>
+</body>
+</html>

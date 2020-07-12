@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var price=12.5;
+    var count=5;
+    console.log(`
+      单价: ¥${price.toFixed(2)}
+      数量: ${count}
+    ===========================
+      小计: ¥${(price*count).toFixed(2)}
+    `);
+    var sex=1;
+    console.log(`性别:${sex==1?"男":"女"}`);
+    //复习***第一阶段***日期: 
+    //获得当前时间对应的ms数
+    //new Date().getTime()
+    var orderTime=1594085622575;
+    //将ms数转为人能看懂的日期
+    console.log(`下单时间:${new Date(orderTime).toLocaleString()}`);
+
+    var week=["日","一","二","三","四","五","六"];
+            // 0    1    2    3    4    5   6
+    //获得当前日期星期几对应的数字(从0开始的！星期日是一周的第一天0)
+    var i=new Date().getDay();//2
+    console.log(`今天星期${week[i]}`);
+                                      
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documen11t</title>
+</head>
+<body>
+  <script>
+    var str="老师:请用小红 我的 朋友造句。小亮:小红是我的朋友。小然:朋友！小红是我的！";
+    //只找第一个敏感词: 不要加g
+    // var reg=/小[\u4e00-\u9fa5]/;
+    // //先用match找: 
+    // var arr=str.match(reg);
+    // console.log(arr);
+    // //再用reg.exec找: 
+    // var arr=reg.exec(str);
+    // console.log(arr);
+    //想找所有: 加g
+    var reg=/小[\u4e00-\u9fa5]/g;
+    //先用match找: 
+    var arr=str.match(reg);
+    console.log(arr);
+    //再reg.exec()
+    //反复执行，只要本次找到了敏感词(arr!=null)，就有必要继续查找下一个
+    //do while: 因为即使不确定字符串中有没有敏感词，也必须至少查找一次时，首选do while。
+    do{
+      var arr=reg.exec(str);//返回值=match()不加g时的返回值
+      //arr:[ 0:"敏感词内容", index:敏感词位置]
+      if(arr!=null){
+        //console.log(arr);
+        console.log(`在位置${arr.index}，发现敏感词 ${arr[0]}`)
+      }
+    }while(arr!=null);
+  </script>
+</body>
+</html>

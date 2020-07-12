@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Student(sname,sage){
+      this.sname=sname;
+      this.sage=sage;
+    }
+    var lilei=new Student("Li Lei",18);
+    var hmm=new Student("Han Meimei",19);
+
+    var father={
+      bal:100000000000,
+      car:"infiniti"
+    }
+
+    console.log(lilei);
+    console.log(hmm);
+
+    //hmm修改自己的_ _proto_ _属性指向father
+    // hmm.__proto__=father;
+    Object.setPrototypeOf(hmm, father);
+    //比较: 
+    console.log(hmm.bal, hmm.car);
+    console.log(lilei.bal, lilei.car);
+
+  </script>
+</body>
+</html>

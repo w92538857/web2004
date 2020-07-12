@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //需要三个函数: 
+    //修剪
+    //trimLeft() 可去掉字符串开头的空字符
+    //                可以改名
+    function trimLeft(字符串){
+      var str2=字符串.replace(/^\s+/,"");
+      return str2;
+    }
+    //trimRight() 可去掉字符串结尾的空字符
+    function trimRight(字符串){
+      var str2=字符串.replace(/\s+$/,"");
+      return str2;
+    }
+    //trim() 可去掉字符串开头和结尾的空字符
+    function trim(字符串){
+      var str2=字符串.replace(/^\s+|\s+$/g,"");
+      return str2;
+    }
+    //测试: 
+    var str="   hello   world    ";
+    console.log(trimLeft(str));//"hello   world    "
+    console.log(trimRight(str));//"   hello   world"
+    console.log(trim(str));//"hello   world"
+  </script>
+</body>
+</html>

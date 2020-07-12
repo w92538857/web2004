@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   // forEach: 单纯为了简化普通for循环遍历索引数组
+    var arr=["亮亮","然然","东东"];
+    //遍历花名册中每个人名，点到谁，谁喊到！
+    //for循环
+    // for(var i=0;i<arr.length;i++){
+    //   alert(`${arr[i]} - 到！`)
+    // }
+    //forEach
+    // arr.forEach(function(value){
+    //   alert(`${value} - 到!`)
+    // })
+    //forEach+箭头函数(暂时不要问！后边详细讲)
+    //arr.forEach((value)=>{alert(`${value} - 到!`)})
+    //箭头函数，如果只有一个形参，可省略()
+    //arr.forEach(value=>{alert(`${value} - 到!`)})
+    //箭头函数，如果只有一句函数体，可省略{}
+    //arr.forEach(value=>alert(`${value} - 到!`))
+    //不愿意写那么长单词
+    arr.forEach(v=>alert(`${v} - 到!`))
+  </script>
+</body>
+</html>

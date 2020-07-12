@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //有一个公共的计算薪资的函数
+    //              底薪  奖金1  奖金2
+    function jisuan(base,bonus1,bonus2){
+      console.log(`${this.ename} 的总工资是: ${base+bonus1+bonus2}`)
+    }
+
+    //有两个员工: 
+    var lilei={ ename:"Li Lei" };
+    var hmm={ ename:"Han Meimei" };
+
+    //两个员工都想用jisuan()函数，计算自己的薪资，都希望计算结果中显示自己的名字
+    //比如: lilei想调用jisuan()函数，计算自己的薪资，希望计算结果中显示自己的名字"Li Lei"
+    //其实就是希望把jisuan()函数中的this->lilei
+    //错误做法1: 
+/* *///jisuan(10000, 1000, 2000)//this->window
+    //错误做法2: 
+    //lilei.jisuan(10000,1000,2000)//报错: lilei.jisuan is not a function
+    //一个对象的原型链上保存着这个对象可用的所有成员
+    //李磊的原型链:
+    //lilei自己内部没有jisuan()
+    //lilei的爹也没有jisuan() 
+    //console.log(lilei.__proto__);
+    //lilei的爷爷是null了，所以更没有jisuan()
+    //console.log(lilei.__proto__.__proto__);
+    //结论: jisuan()函数虽然在全局，但是却没有在lilei的原型链上！所以lilei.jisuan()找不到，就会报错！
+    //正确: //*临时*替换this为lilei
+    jisuan.call( lilei,10000, 1000,  2000);
+//                 |     ↓      ↓      ↓
+//function jisuan( ↓    base, bonus1, bonus2){
+  //              this.ename...
+    //为什么是临时的: 
+    jisuan(4000,5000,6000);//this->window
+    //hmm也想调用jisuan()函数，计算自己的薪资
+    jisuan.call(  hmm,  4000, 5000,  6000);
+//                 |     ↓      ↓      ↓
+//function jisuan( ↓    base, bonus1, bonus2){
+  //              this.ename...
+  </script>
+</body>
+</html>

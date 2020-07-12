@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr=[1,2,3,4,5];
+    //希望过滤出数组中的偶数，放入新数组返回
+    var arr2=arr.filter(function(value,i,arr){
+      console.log(`arr.filter自动调用了一次回调函数。将原数组${arr}中${i}位置的元素值${value}传入回调函数。经过判断返回${value%2==0}。`)
+      //判断当前元素是否为偶数
+      return value%2==0
+    });
+    console.log(arr2);
+    console.log(arr);
+  </script>
+</body>
+</html>
